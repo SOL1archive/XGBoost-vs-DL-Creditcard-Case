@@ -36,12 +36,12 @@ XGBoost는 `GridSearch`를 통해 적절한 하이퍼파라미터를 구함. 딥
 |||
 |-|-|
 |XGBoost|14.3s|
-|DL|3m 40s|
+|DL|17s|
 
 ### Metrics
 
 ||XGBoost|Deep Learning|
-|-|-|-|
+|-|-:|-:|
 |accuracy|0.9997|0.9984|
 |recall|0.8309|0.9984|
 |F1|0.8898|0.4996|
