@@ -8,6 +8,7 @@
 XGBoost는 `GridSearch`를 통해 적절한 하이퍼파라미터를 구함. 딥러닝 모델의 경우 `tensorflow`를 통해 구현함. 과적합을 방지하기 위해 `Dropout` 기법을 적용하고 Batch Normalization 기법도 적용함. 테스트 지표로 봤을 때 과적합은 일어나지 않은 것으로 보임.
 
 - Deep Learning Model Summary
+
 ```
 _________________________________________________________________
  Layer (type)                Output Shape              Param #   
@@ -75,6 +76,8 @@ Non-trainable params: 420
 _________________________________________________________________
 ```
 
+딥러닝 모델의 하이퍼파라미터 튜닝은 모델의 크기를 다소 크게 설정한 후 모델 성능의 변화를 확인하면서 크기를 점진적으로 줄임. 출력층을 제외한 FFN 층에는 Batch Norm을 적용함. Batch Norm이 적용된 층에는 편향이 의미가 없으므로([해당 링크 참고](https://sol1archive.github.io/note/step2-6)) 편향 파라미터를 제외함. Regularization 전략으로 유닛의 개수가 많은 층에 Drop-out 기법과 L2 Regularization을 적용함. 
+
 ## Result
 
 ### Training Resources
@@ -114,7 +117,7 @@ _________________________________________________________________
 |recall|0.8309|0.9984|
 |F1|0.8898|0.4996|
 
-Accuracy의 경우 XGBoost가 딥러닝 모델보다 소폭 높으나 recall의 경우 딥러닝 모델의 성능이 압도적임. 신용카드 부정 사용의 경우 recall이 중요한 지표라고 볼 수 있으므로 딥러닝 모델의 성능이 좋음.
+Accuracy의 경우 XGBoost가 딥러닝 모델보다 소폭 높으나 recall의 경우 딥러닝 모델의 성능이 압도적임. 신용카드 부정 사용의 경우 recall이 중요한 지표라고 볼 수 있으므로 딥러닝 모델의 성능이 더 좋닥 할 수 있음. 비록 XGBoost가 딥러닝 모델보다 가벼울 수 있고 딥러닝 모델이 Tabular Data에서 잘 작동하지 않을 수 있지만 적절한 하이퍼파라미터 튜닝을 통해 딥러닝 모델의 성능을 XGBoost나 그 이상으로 개선시킬 수 있는 것으로 보임.
 
 Reference)
 - Shwartz-Ziv, Ravid, and Amitai Armon. "Tabular data: Deep learning is not all you need." _Information Fusion_ 81 (2022): 84-90.
